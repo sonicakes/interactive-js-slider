@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+    console.log('ready');
     valuesObj = {
         1: "10k",
         2: "20k",
@@ -28,14 +29,25 @@ $( document ).ready(function() {
     let valSlider = $("#priceSlider").val();
     $("#viewsNum").text(valuesObj[valSlider]);
     let viewsCount =  $("#viewsNum").text();
-    $("#priceNum").text(pricingObj[viewsCount]); 
+    $("#priceNum").text(pricingObj[viewsCount]);
+    let percentage = viewsCount.slice(0, -1); 
+    console.log(valSlider, viewsCount, percentage);
+    $( "#priceSlider" ).css( 'background', 'linear-gradient(to right, hsl(174, 77%, 80%) 0%, hsl(174, 77%, 80%) '+ percentage +'%, #fff ' + percentage + '%, #fff 100%)' );
+
  
 
 
     $("#priceSlider").on("change", function(){
+
         valSlider = $("#priceSlider").val();
         viewsCount = $("#viewsNum").text();
         $("#viewsNum").text(valuesObj[valSlider]);
         $("#priceNum").text(pricingObj[viewsCount]); 
+        percentage = $("#viewsNum").text().slice(0, -1); 
+        console.log('this is percentage', percentage);
+
+        $( "#priceSlider" ).css( 'background', 'linear-gradient(to right, hsl(174, 77%, 80%) 0%, hsl(174, 77%, 80%) '+ percentage +'%, #fff ' + percentage + '%, #fff 100%)' );
+        //need help figuring out that percentage funciton...brrrr
+       
     });
 });
